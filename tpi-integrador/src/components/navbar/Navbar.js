@@ -1,7 +1,10 @@
-import React from 'react'
-import FilterPhone from './FilterPhone'
+
 
 const Navbar = () => {
+
+ 
+
+
   return (
     <>
   
@@ -10,10 +13,7 @@ const Navbar = () => {
         <ul className='nav nav-tabs'role="tablist">
           <li className='nav-item'>
             <button>Inicio</button>
-          </li>
-          <li className='nav-item dropdown'>
-          <FilterPhone/>
-          </li>
+            </li>
           <li className='nav-item'>
             <button>Carrito</button>
             </li>
