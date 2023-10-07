@@ -45,7 +45,7 @@ const AddPhone = ({onFormSubmit}) => {
 
 
   return (
-    <>
+    <div>
        <form>
         <h2>Agregar celular</h2>
             <label  className='addLabel'>Imagen</label>
@@ -81,13 +81,9 @@ const AddPhone = ({onFormSubmit}) => {
             onChange={onPriceChangeHandler}
             />
             <button type='button' className='button' onClick={AddPhoneClick}>Agregar</button>
-            </form> 
-
-
-            
-
+            </form>
     
-    </>
+    </div>
   )
 }
 

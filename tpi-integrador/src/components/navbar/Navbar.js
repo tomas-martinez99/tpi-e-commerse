@@ -2,14 +2,8 @@
 
 const Navbar = () => {
 
- 
-
-
   return (
-    <>
-  
-    
-        
+    <div>
         <ul className='nav nav-tabs'role="tablist">
           <li className='nav-item'>
             <button>Inicio</button>
@@ -27,7 +21,7 @@ const Navbar = () => {
         
        
     
-  </>
+  </div>
 
   )
 }

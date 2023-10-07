@@ -3,25 +3,27 @@ import PhoneForm from './PhoneForm'
 import FilterPhone from './FilterPhone'
 
 function getPhonesBrand (p) {
-  const brands = p.map((phone)=> phone.brand);
+  const brands = p.map((phone) => phone.brand);
   let uniqueBrand = brands.filter((brand,index)=> brands.indexOf(brand)=== index);
   return uniqueBrand;
 }
 
 
-const PhoneList = ({p}) => {
-  const [phonesFiltred, setPhonesFiltred] = useState(p)
+const PhoneList = ({phones}) => {
+  const [phonesFiltered, setPhonesFiltered] = useState(phones)
 
 useEffect(() => {
-  setPhonesFiltred(p);
-}, [p])
+  setPhonesFiltered(phones);
+}, [phones]);
 
   const onBrandChangeHandler = (brand) =>{
-    const phonesFilter = p.filter(function(phone){
-      return phone.brand === brand
-    })
-    setPhonesFiltred(phonesFilter)
-  }
+    if (brand === 'All') {
+      setPhonesFiltered(phones);
+    } else {
+      const phonesFilter = phones.filter((phone) => phone.brand === brand);
+      setPhonesFiltered(phonesFilter);
+    }
+  };
  
 
   return (
@@ -31,17 +33,14 @@ useEffect(() => {
       
           <FilterPhone
           onBrandChange={onBrandChangeHandler}
-          brands={getPhonesBrand(p)}
+          brands={getPhonesBrand(phones)}
           />
-        <div className='phone-list'>
-        {phonesFiltred.map((p,index) => (
-        <PhoneForm key={index} name={p.name} price={p.price} img={p.img} brand={p.brand}/>
-      ))}
-            
 
+        <div className='phone-list'>
+          {phonesFiltered.map((phone) => (
+          <PhoneForm key={phone.id} {...phone} />
+          ))}
         </div>
-    
-    
     </div>
   )
 }
