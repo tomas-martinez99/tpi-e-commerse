@@ -1,20 +1,39 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect} from 'react'
 import AddPhone from './AddPhone'
 import PhoneList from './PhoneList'
 
+import Products from "../../Json/Products.json"
+
+
 const Home = () => {
-    const [phones, setPhones] = useState([{name: ' Iphone 14' ,  price : '15' , brand :'Apple ',img:"https://i.blogs.es/d69481/iphone-14-00-01/1366_2000.jpg"}]);
+    const [phone, setPhone] = useState([]);
+    
+
+  useEffect(()=>{
+    const fetchData = async()=>{
+       try{
+       const data = await new Promise((resolve)=>{
+       setTimeout(()=>{
+       resolve(Products)
+      }, 2000);
+       });
+       setPhone(data);
+     }catch(error){
+       console.log('Error:', error);
+     }
+    };
+   fetchData();})
     const onPhoneSubmit = (phone) =>{
         console.log(phone);
-        setPhones((phones)=>[...phones,phone]);
+        setPhone((phones)=>[...phones,phone]);
     }
- 
-
+  
+  
     
   return (
     <div>
         <AddPhone onFormSubmit={onPhoneSubmit}/>
-        <PhoneList phones={phones}/>
+        <PhoneList phones={phone}/>
     </div>
   )
 }

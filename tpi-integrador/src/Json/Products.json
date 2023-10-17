@@ -1,0 +1,5 @@
+[
+    {"id":1, "name":"iPhone 13 pro", "img":"https://www.macstation.com.ar/img/productos/2594-1.jpg", "price":220000, "stock":10, "brand":"Appel"},
+    {"id":2, "name":"Samsung S23 ", "img":"https://samsungar.vtexassets.com/arquivos/ids/186560-800-auto?width=800&height=auto&aspect=true", "price":50000, "stock":10, "brand":"Samsung"},
+    {"id":3, "name":"Motorola G52", "img":"https://carrefourar.vtexassets.com/arquivos/ids/250996-1600-auto?v=637933178054400000&width=1600&height=auto&aspect=true", "price":120000, "stock":10, "brand":"Motorola" }
+]
