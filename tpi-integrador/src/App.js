@@ -11,8 +11,9 @@ import { CartContextProvider } from './context/ContextCart';
 function App() {
   return (
     <div>
-    <CartContextProvider>
+   
       <BrowserRouter>
+      <CartContextProvider>
         <Navbar/>
         <Routes>
           <Route path={"/"} element={<Home />} />
@@ -20,10 +21,11 @@ function App() {
           <Route path={"/cart"} element={<Cart/>} />
           <Route path={"*"} element={<Error404 />} />
         </Routes>
+        </CartContextProvider>
       </BrowserRouter>
    
         
-      </CartContextProvider>
+     
 
     </div>
     

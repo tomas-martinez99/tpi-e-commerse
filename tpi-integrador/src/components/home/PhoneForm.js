@@ -1,25 +1,32 @@
-import React, { useContext, useState } from 'react'
-import "./PhoneForm.css"
-import { CartContext } from '../../context/ContextCart'
+import {Link} from "react-router-dom";
+import "./PhoneForm.css";
+import {useCartContext } from '../../context/ContextCart';
+import ProductCount from "./ProductCount";
 
-const PhoneForm = ({name,img,price,brand, onCartSubmit}) => {
-  const {cartItem, setCartItem} = useContext(CartContext)
+const PhoneForm = ({phone,name,img,price,stock,brand}) => {
+  const {addItem}= useCartContext()
  
- const addPhoneCartClick = () =>{
-   setCartItem( { name: name, img : img, price:price, brand : brand})
-        onCartSubmit(cartItem);
+ const onAdd = (contador) =>{
+   addItem(phone, contador)
  }
   return (
-  <div>
+    <>
+    <div>
     <div className='card'  > 
     <h2 className='name'>{name}</h2>
     <img src= {img} className='card-img-top' alt={name} />
         <h4 className='brand'>{brand}</h4>
         <p className='price'>${price}</p>
-        </div>
-      <button onClick={addPhoneCartClick}>Agregar al carrito</button>
+
+      
+        <ProductCount started = {1} stock= {stock} onAdd={onAdd}/><br/>
+    </div>
+    </div>
+        
   
-  </div>
+
+  <button className= "btn btn-primary"><Link to="/cart" className="nav-link">Finalizar compra</Link></button>
+  </>
     
   )
 }
