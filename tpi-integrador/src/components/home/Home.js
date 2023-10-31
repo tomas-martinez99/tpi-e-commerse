@@ -1,39 +1,43 @@
-import React, { useState, useEffect} from 'react'
+
+import { useState } from 'react'
+import { ProductsFetch } from '../customHooks/ProductsFetch'
 import AddPhone from './AddPhone'
 import PhoneList from './PhoneList'
 
-import Products from "../../Json/Products.json"
+
 
 
 const Home = () => {
-    const [phone, setPhone] = useState([]);
-    
-
-  useEffect(()=>{
-    const fetchData = async()=>{
-       try{
-       const data = await new Promise((resolve)=>{
-       setTimeout(()=>{
-       resolve(Products)
-      }, 2000);
-       });
-       setPhone(data);
-     }catch(error){
-       console.log('Error:', error);
-     }
-    };
-   fetchData();})
-    const onPhoneSubmit = (phone) =>{
-        console.log(phone);
-        setPhone((phones)=>[...phones,phone]);
+   
+    const {data} = ProductsFetch("https://api-servis.onrender.com/products")
+    const [phones , setPhones] = useState()
+    const onPhoneSubmit = async (phone) =>{
+      try {
+        const response = await fetch("https://api-servis.onrender.com/products",{
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(phone)
+      });
+      if (response.ok){
+        const newPhone = await response.json();
+        console.log("post request successful:" , newPhone);
+        setPhones([...phones, newPhone])
+      }else{
+        console.error("POST request failed", response.statusText);
+      }
+    }catch(error){
+      console.error("Error", error);
     }
-  
-  
+  };
+
+
     
   return (
     <div>
         <AddPhone onFormSubmit={onPhoneSubmit}/>
-        <PhoneList phones={phone}/>
+        <PhoneList phones={data}/>
     </div>
   )
 }

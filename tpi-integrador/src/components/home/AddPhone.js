@@ -2,45 +2,33 @@ import React, { useState } from 'react'
 
 const AddPhone = ({onFormSubmit}) => {
 
-    const [img , setImg] = useState('');
-    const [name, setName] = useState('');
-    const [price, setPrice] = useState('');
-    const [brand, setBrand] = useState('');
+   const [data, setData] =useState({
+    name: "",
+    img: "",
+    price: "",
+    brand:"",
+    stock:"",
+   })
 
-    const AddPhoneClick = () =>{
-        let phone = { name: name, img : img, price:price, brand : brand};
-        onFormSubmit(phone);
+    const AddPhoneClick =(e) =>{
+    
+        
+        onFormSubmit(e.preventDefault());
 
-        setName('');
-        setImg('');
-        setPrice('');
-        setBrand('');
-
-    }
-
-    const onImgChangeHandler = (event) => {
-        setImg(event.target.value);
-        console.log(img)
-
-    }
-
-    const onNameChangeHandler = (event) => {
-        setName(event.target.value);
-        console.log(name)
+        setData({
+            name: "",
+            img: "",
+            price: "",
+            brand:"",
+            stock:"",
+        })
 
     }
 
-    const onPriceChangeHandler = (event) => {
-        setPrice(event.target.value);
-        console.log(price)
-
-    }
-
-    const onBrandChangeHandler = (event) => {
-        setBrand(event.target.value);
-        console.log(brand)
-
-    }
+    const onDataChangeHandler= (e)=> {
+       setData({...data,[e.target.name]: e.target.value,
+    });
+    };
 
 
 
@@ -53,32 +41,40 @@ const AddPhone = ({onFormSubmit}) => {
             type='text'
             id='img' 
             className='addControl'
-            value={img}
-            onChange={onImgChangeHandler}
+            value={data.img}
+            onChange={onDataChangeHandler}
             />
             <label  className='addLabel'>Modelo</label>
             <input 
             type='text'
             id='name' 
             className='addControl'
-            value={name}
-            onChange={onNameChangeHandler}
+            value={data.name}
+            onChange={onDataChangeHandler}
             />
             <label  className='addLabel'>Marca</label>
             <input 
             type='text'
             id='brand' 
             className='addControl'
-            value={brand}
-            onChange={onBrandChangeHandler}
+            value={data.brand}
+            onChange={onDataChangeHandler}
             />
             <label  className='addLabel'>Precio</label>
             <input 
-            type='text'
+            type='number'
             id='price' 
             className='addControl'
-            value={price}
-            onChange={onPriceChangeHandler}
+            value={data.price}
+            onChange={onDataChangeHandler}
+            />
+            <label  className='addLabel'>Stock</label>
+            <input 
+            type='number'
+            id='stock' 
+            className='addControl'
+            value={data.stock}
+            onChange={onDataChangeHandler}
             />
             <button type='button' className='button' onClick={AddPhoneClick}>Agregar</button>
             </form>

@@ -12,7 +12,7 @@ const FilterPhone = ({onBrandChange, brands}) => {
   return (
     <div>
     <select id="brand" value={brandSelected} onChange={brandChangeHandler}>
-       <option value={''}>Seleciona una Marca</option>
+       <option value={'All'}>Seleciona una Marca</option>
        {brands.map((brand,id)=>(
         <option key={id} value={brand}>{brand}</option>
        ))}

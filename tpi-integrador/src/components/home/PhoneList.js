@@ -3,18 +3,15 @@ import PhoneForm from './PhoneForm'
 import FilterPhone from './FilterPhone'
 
 function getPhonesBrand (p) {
-  const brands = p.map((phone) => phone.brand);
-  let uniqueBrand = brands.filter((brand,index)=> brands.indexOf(brand)=== index);
-  return uniqueBrand;
+  const brands = [...new Set( p.map((phone) => phone.brand))];
+  return brands;
 }
 
 
 const PhoneList = ({phones}) => {
   const [phonesFiltered, setPhonesFiltered] = useState(phones)
 
-useEffect(() => {
-  setPhonesFiltered(phones);
-}, [phones]);
+
 
   const onBrandChangeHandler = (brand) =>{
     if (brand === 'All') {
